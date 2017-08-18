@@ -14,7 +14,7 @@ namespace csharp_belt.Models
         [MinLength(2)]
         public string Description {get; set;}
         [Required]
-        [Range(0, double.MaxValue, ErrorMessage = "Starting bid is too low.")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Starting bid is too low.")]
         [RegularExpression(@"^\d{0,8}(\.\d{0,2})?$", ErrorMessage = "Not a valid bid format.")]
         [Display(Name = "Starting Bid")]
         public double Bid {get; set;}
