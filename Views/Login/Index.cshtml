@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Register";
+}
+@model csharp_belt.Models.RegisterViewModel
+
+<div id="registration" class="well">
+    <h1>Register</h1>
+    <form asp-controller="Login" asp-action="Register" method="POST">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control">
+        <span asp-validation-for="FirstName"></span><br>
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control">
+        <span asp-validation-for="LastName"></span><br>
+        <label asp-for="Username"></label>
+        <input asp-for="Username" class="form-control">
+        <span asp-validation-for="Username"></span>
+        @{
+            if (ViewBag.Error != "false") {
+            <span class="field-validation-error">@ViewBag.Error</span>
+            }
+        }<br>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control">
+        <span asp-validation-for="Password"></span><br>
+        <label asp-for="Confirm"></label>
+        <input asp-for="Confirm" class="form-control">
+        <span asp-validation-for="Confirm"></span><br>
+        <button type="submit" name="submit" class="btn btn-primary">Register</button>
+    </form><br>
+    <a href="/login">Already Registered?</a>
+</div>

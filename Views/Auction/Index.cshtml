@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Auctions";
+}
+@using System;
+
+<nav>
+    <a href="/logout">Logout</a>
+    <p>Hi @ViewBag.Wallet.User.FirstName</p>
+    <h1>Current Auctions</h1>
+</nav>
+<main> 
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Seller</th>
+                <th>Top Bid</th>
+                <th>Time Remaining</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var auction in ViewBag.Auctions) {
+                    <tr>
+                        <td><a asp-controller="Auction" asp-action="InfoPage" asp-route-id="@auction.AuctionId">@auction.Name</a></td>
+                        <td>@auction.User.FirstName @auction.User.LastName</td>
+                        <td>$@auction.Bid</td>
+                        @{
+                            var timeremaining = (@auction.EndDate - DateTime.Today).TotalDays;
+                        }
+                        @if (@timeremaining == 1) {
+                            <td>@timeremaining day</td>
+                        } else {
+                            <td>@timeremaining days</td>
+                        }
+                        @if (ViewBag.UserId == auction.UserId) {
+                            <td><a asp-controller="Auction" asp-action="Delete" asp-route-id="@auction.AuctionId">Delete</a></td>
+                        } else {
+                            <td></td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a href="/new"><button class="btn btn-primary">New Auction</button></a><br><br>
+    <p>Your Current Wallet: $@ViewBag.Wallet.Amount</p>
+</main>

@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Info Page";
+}
+
+<nav>
+    <a href="/logout">Logout</a>
+    <a href="/auctions">Home</a>
+    <h1>@ViewBag.Auction.Name</h1>
+</nav>
+<main>
+    <p>Created by: @ViewBag.Auction.User.FirstName @ViewBag.Auction.User.LastName</p>
+    @{
+        var timeremaining = (@ViewBag.Auction.EndDate - DateTime.Today).TotalDays;
+    }
+    @if (@timeremaining == 1) {
+        <p>Time Remaining: @timeremaining day</p>
+    } else {
+        <p>Time Remaining: @timeremaining days</p>
+    }
+    <p>Description: @ViewBag.Auction.Description</p>
+    @{
+        if(ViewBag.Bidder != null) {
+            <p>Current Highest Bid: $@ViewBag.Auction.Bid by @ViewBag.Bidder.User.FirstName @ViewBag.Bidder.User.LastName</p>
+        } else {
+            <p>Current Highest Bid: $@ViewBag.Auction.Bid by @ViewBag.Auction.User.FirstName @ViewBag.Auction.User.LastName</p>
+        }
+    }
+
+    <form asp-controller="Auction" asp-action="NewBid" asp-route-id="@ViewBag.Auction.AuctionId" method="POST">
+        <label>Amount</label>
+        <input name="Amount" type="number" class="form-control">
+        @{
+            if (ViewBag.Error != null) {
+                <span class="field-validation-error">@ViewBag.Error</span>
+            }
+        }<br>
+        <button type="submit" class="btn btn-primary">Bid!!!</button>
+    </form>
+</main>

@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "New Auction";
+}
+
+@model csharp_belt.Models.AuctionCheck
+
+<nav>
+    <a href="/logout">Logout</a>
+    <a href="/auctions">Home</a>
+    <h1>New Auction</h1>
+</nav>
+
+<div id="auction">
+    <form asp-controller="Auction" asp-action="Process" method="POST">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name"></span><br>
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description"></span><br>
+        <label asp-for="Bid"></label>
+        <input asp-for="Bid" class="form-control">
+        <span asp-validation-for="Bid"></span><br>
+        <label asp-for="EndDate"></label>
+        <input asp-for="EndDate" class="form-control" type="date">
+        <span asp-validation-for="EndDate"></span><br>
+        <button type="submit" name="submit" class="btn btn-primary">Create Auction</button>
+    </form>
+</div>

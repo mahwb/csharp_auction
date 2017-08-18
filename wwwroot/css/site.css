@@ -1,0 +1,16 @@
+form > label {
+    width: 150px;
+}
+.field-validation-error {
+    color: red;
+}
+nav > * {
+    width: fit-content;
+}
+nav > a {
+    float: right;
+    padding: 0px 10px;
+}
+nav > p {
+    float: right;
+}
