@@ -62,7 +62,7 @@ namespace csharp_belt.Controllers
             return View();
         }
 
-
+        //redirect if trying to go to post route        
         [HttpGet]
         [Route("process")]
         public IActionResult Process()
@@ -125,6 +125,14 @@ namespace csharp_belt.Controllers
                 }
                 _context.SaveChanges();
             }
+            return RedirectToAction("Index");
+        }
+        
+        //redirect if trying to go to post route
+        [HttpGet]
+        [Route("newbid/{id}")]
+        public IActionResult NewBid()
+        {
             return RedirectToAction("Index");
         }
 

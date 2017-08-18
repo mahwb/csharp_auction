@@ -8,7 +8,7 @@ namespace csharp_belt.Models
     {
         [Required]
         [Range(0, double.MaxValue, ErrorMessage = "Starting bid is too low.")]
-        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Not a valid bid format.")]
+        [RegularExpression(@"^\d{0,8}(\.\d{1,4})?$", ErrorMessage = "Not a valid bid format.")]
         public double Amount {get; set;}
     }
 }
