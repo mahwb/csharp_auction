@@ -147,6 +147,7 @@ namespace csharp_belt.Controllers
             Wallet wallet = _context.wallets.SingleOrDefault(w => w.UserId == HttpContext.Session.GetInt32("userid"));
             if (Amount > auction.Bid) {
                 if (wallet.Amount >= Amount) {
+                    //currently can bid on own auctions
                     Bid newbid = new Bid {
                         AuctionId = auction.AuctionId,
                         UserId = (int)HttpContext.Session.GetInt32("userid"),

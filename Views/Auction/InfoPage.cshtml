@@ -8,21 +8,21 @@
     <h1>@ViewBag.Auction.Name</h1>
 </nav>
 <main>
-    <p>Created by: @ViewBag.Auction.User.FirstName @ViewBag.Auction.User.LastName</p>
+    <p><strong>Created by:</strong> @ViewBag.Auction.User.FirstName @ViewBag.Auction.User.LastName</p>
     @{
         var timeremaining = (@ViewBag.Auction.EndDate - DateTime.Today).TotalDays;
     }
     @if (@timeremaining == 1) {
-        <p>Time Remaining: @timeremaining day</p>
+        <p><strong>Time Remaining:</strong> @timeremaining day</p>
     } else {
-        <p>Time Remaining: @timeremaining days</p>
+        <p><strong>Time Remaining:</strong> @timeremaining days</p>
     }
-    <p>Description: @ViewBag.Auction.Description</p>
+    <p><strong>Description:</strong> @ViewBag.Auction.Description</p>
     @{
         if(ViewBag.Bidder != null) {
-            <p>Current Highest Bid: $@ViewBag.Auction.Bid by @ViewBag.Bidder.User.FirstName @ViewBag.Bidder.User.LastName</p>
+            <p><strong>Current Highest Bid:</strong> $@ViewBag.Auction.Bid by @ViewBag.Bidder.User.FirstName @ViewBag.Bidder.User.LastName</p>
         } else {
-            <p>Current Highest Bid: $@ViewBag.Auction.Bid by @ViewBag.Auction.User.FirstName @ViewBag.Auction.User.LastName</p>
+            <p><strong>Starting Bid:</strong> $@ViewBag.Auction.Bid</p>
         }
     }
 
