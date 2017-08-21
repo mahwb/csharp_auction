@@ -123,9 +123,9 @@ namespace csharp_belt.Controllers
             if (delauction.UserId == HttpContext.Session.GetInt32("userid")) {
                 _context.auctions.Remove(delauction);
                 foreach (var bid in delbids) {
-                    _context.bids.Remove(bid);
                     Wallet bidder_wallet = _context.wallets.SingleOrDefault(w => w.UserId == bid.UserId);
                     bidder_wallet.Amount += bid.Amount;
+                    _context.bids.Remove(bid);
                 }
                 _context.SaveChanges();
             }
