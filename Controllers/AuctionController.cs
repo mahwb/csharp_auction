@@ -35,6 +35,8 @@ namespace csharp_belt.Controllers
                             //give money to auction creator
                             Wallet auction_wallet = _context.wallets.SingleOrDefault(w => w.UserId == auction.UserId);
                             auction_wallet.Amount += bid.Amount;
+                            Wallet takefrom_wallet = _context.wallets.SingleOrDefault(w => w.UserId == auction.UserId);
+                            takefrom_wallet.Amount -= bid.Amount;
                         } else {
                             //give money back to bidder
                             Wallet bidder_wallet = _context.wallets.SingleOrDefault(w => w.UserId == bid.UserId);
@@ -122,6 +124,8 @@ namespace csharp_belt.Controllers
                 _context.auctions.Remove(delauction);
                 foreach (var bid in delbids) {
                     _context.bids.Remove(bid);
+                    Wallet bidder_wallet = _context.wallets.SingleOrDefault(w => w.UserId == bid.UserId);
+                    bidder_wallet.Amount += bid.Amount;
                 }
                 _context.SaveChanges();
             }
